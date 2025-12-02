@@ -22,4 +22,9 @@ public class Department {
 
     @OneToMany(mappedBy = "department")
     private List<Student> students;
+
+    public Department(Long idDepartment, String name) {
+        this.idDepartment = idDepartment;
+        this.name = name;
+    }
 }
