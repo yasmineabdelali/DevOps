@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EnrollmentService implements IEnrollment {
 
-    EnrollmentRepository enrollmentRepository;
+  private   EnrollmentRepository enrollmentRepository;
 
     @Override
     public List<Enrollment> getAllEnrollments() {

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class DepartmentService implements IDepartmentService {
 
-    DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;
 
     @Override
     public List<Department> getAllDepartments() {
