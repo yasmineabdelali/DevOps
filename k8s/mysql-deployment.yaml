@@ -4,7 +4,7 @@ metadata:
   name: mysql-pv
 spec:
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -21,6 +21,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
+    limits:
+      storage: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,6 +39,7 @@ spec:
       labels:
         app: mysql
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: mysql
           image: mysql:8.0
@@ -47,6 +50,16 @@ spec:
               value: studentdb
           ports:
             - containerPort: 3306
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+              ephemeral-storage: "2Gi"
+
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql

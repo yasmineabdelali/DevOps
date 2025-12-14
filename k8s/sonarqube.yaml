@@ -13,6 +13,8 @@ spec:
       labels:
         app: sonarqube
     spec:
+      automountServiceAccountToken: false
+
       containers:
         - name: sonarqube
           image: sonarqube:9.9-community
@@ -25,9 +27,11 @@ spec:
             requests:
               memory: "1Gi"
               cpu: "500m"
+              ephemeral-storage: "2Gi"
             limits:
               memory: "2Gi"
               cpu: "1"
+              ephemeral-storage: "4Gi"
           volumeMounts:
             - name: sonarqube-data
               mountPath: /opt/sonarqube/data
